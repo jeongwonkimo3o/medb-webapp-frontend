@@ -5,7 +5,7 @@ import { FieldProps } from "../../types/FieldProps"; // interface
 
 const Field = ({ field }: FieldProps): JSX.Element => {
   return (
-    <div className="relative block">
+    <div className="relative block w-">
       <label
         htmlFor={field.name}
         className="relative block rounded-md border border-gray-200 shadow-sm focus-within:border-blue-600 focus-within:ring-1 focus-within:ring-blue-600"
