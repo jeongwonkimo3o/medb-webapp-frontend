@@ -1,16 +1,10 @@
 const DrugFAQ = (): JSX.Element => {
   return (
-
-    <div className="space-y-4">
-
-      <details
-        className="group rounded-lg bg-gray-50 p-6 [&_summary::-webkit-details-marker]:hidden"
-      >
-        <summary
-          className="flex cursor-pointer items-center justify-between gap-1.5 text-gray-900"
-        >
+    <div className="space-y-4 mb-6">
+      <details className="group rounded-lg bg-gray-50 p-6 [&_summary::-webkit-details-marker]:hidden">
+        <summary className="flex cursor-pointer items-center justify-between gap-1.5 text-gray-900">
           <h2 className="font-medium">
-            Lorem ipsum dolor sit amet consectetur adipisicing?
+            약의 구성요소
           </h2>
 
           <span className="relative h-5 w-5 shrink-0">
@@ -47,14 +41,14 @@ const DrugFAQ = (): JSX.Element => {
         </summary>
 
         <p className="mt-4 leading-relaxed text-gray-700">
-          Lorem ipsum dolor sit amet consectetur, adipisicing elit. Ab hic veritatis
-          molestias culpa in, recusandae laboriosam neque aliquid libero nesciunt
-          voluptate dicta quo officiis explicabo consequuntur distinctio corporis
-          earum similique!
+          Lorem ipsum dolor sit amet consectetur, adipisicing elit. Ab hic
+          veritatis molestias culpa in, recusandae laboriosam neque aliquid
+          libero nesciunt voluptate dicta quo officiis explicabo consequuntur
+          distinctio corporis earum similique!
         </p>
       </details>
     </div>
-  )
-}
+  );
+};
 
-export default DrugFAQ
+export default DrugFAQ;
