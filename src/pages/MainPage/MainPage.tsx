@@ -14,7 +14,7 @@ const MainPage = (): JSX.Element => {
           그럴 경우에는 MEDB를 통해 필요한 정보만을 손쉽게 찾아볼 수 있습니다!
         </p>
       </div>
-      <SearchForm />
+      <SearchForm redirectOnSearch={true} />
     </div>
   );
 };
