@@ -1,18 +1,17 @@
+import { FieldProps } from "../../types/Auth";
 
-import { FieldProps } from "../../types/FieldProps"; // interface
 
-// Auth 관련 폼 동적 사용
 
-const Field = ({ field }: FieldProps): JSX.Element => {
+const Field = ({ field, onChange, value }: FieldProps & { onChange: (e: React.ChangeEvent<HTMLInputElement>) => void, value: string }): JSX.Element => {
   return (
-    <div className="relative block w-">
-      <label
-        htmlFor={field.name}
-        className="relative block rounded-md border border-gray-200 shadow-sm focus-within:border-blue-600 focus-within:ring-1 focus-within:ring-blue-600"
-      >
+    <div className="relative block w-full">
+      <label htmlFor={field.name} className="relative block rounded-md border border-gray-200 shadow-sm focus-within:border-blue-600 focus-within:ring-1 focus-within:ring-blue-600">
         <input
           type={field.type}
           id={field.name}
+          name={field.name} 
+          value={value}
+          onChange={onChange}
           className="peer w-full border-none bg-transparent placeholder-transparent focus:border-transparent focus:outline-none focus:ring-0 p-4 rounded-md"
           placeholder={field.placeholder}
         />
@@ -21,7 +20,8 @@ const Field = ({ field }: FieldProps): JSX.Element => {
         </span>
       </label>
     </div>
-  )
+  );
 };
+
 
 export default Field;
