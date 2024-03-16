@@ -18,7 +18,7 @@ function App(): JSX.Element {
         <Route path="search" element={<SearchPage />} />
         <Route path="detail/:item_seq" element={<DetailPage />} />
       </Route>
-      <Route path="/mypage" element={<MyPage />} />
+      <Route path="/mypage/:id" element={<MyPage />} />
     </Routes>
   );
 }
