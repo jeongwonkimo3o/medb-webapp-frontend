@@ -1,7 +1,11 @@
 import { Link } from "react-router-dom";
-import Logo from "../../assets/medb_logo.png"
+import Logo from "../../assets/medb_logo.png";
 
 const Header = (): JSX.Element => {
+  const token = localStorage.getItem("authToken");
+  const nickname = localStorage.getItem("nickname");
+  const id = localStorage.getItem("id");
+
   return (
     <>
       <header className="bg-white">
@@ -13,24 +17,35 @@ const Header = (): JSX.Element => {
                 <img src={Logo} className="w-20" alt="로고" />
               </Link>
             </div>
-
-              
-
-            <div className="flex items-center gap-4">
-              <div className="sm:flex sm:gap-4">
-                <Link
-                  className="px-5 py-2.5 text-sm font-medium text-blue-800 hover:text-blue-400"
-                  to="/login"
-                >
-                  로그인
-                </Link>
+            
+            {token == null ? (
+              <div className="flex items-center gap-4">
+                <div className="sm:flex sm:gap-4">
+                  <Link
+                    className="px-5 py-2.5 text-sm font-medium text-blue-800 hover:text-blue-400"
+                    to="/login"
+                  >
+                    로그인
+                  </Link>
+                </div>
               </div>
-            </div>
+            ) : (
+              <div className="flex items-center gap-4">
+                <div className="sm:flex sm:gap-4">
+                  <Link
+                    className="px-5 py-2.5 text-sm font-medium text-blue-800 hover:text-blue-400"
+                    to={`/mypage/${id}`}
+                  >
+                    {`${nickname}님`}
+                  </Link>
+                </div>
+              </div>
+            )}
           </div>
         </div>
       </header>
     </>
-  )
-}
+  );
+};
 
 export default Header;

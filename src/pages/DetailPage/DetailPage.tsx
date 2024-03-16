@@ -6,6 +6,7 @@ import nullImage from "../../assets/image_null.png";
 import { useParams } from "react-router-dom";
 import Loading from "../../components/Loading/Loading";
 import formatDate from "../../services/FormatData";
+import FloatingMenu from "../../components/FloatingMenu"; // 추가
 
 const DetailPage = (): JSX.Element => {
   const [drugInfo, setDrugInfo] = useState<DrugInfo | null>(null);
@@ -56,6 +57,8 @@ const DetailPage = (): JSX.Element => {
             : "알 수 없음"}
         </p>
       </div>
+      
+      <FloatingMenu /> {/* 추가 */}
     </div>
   );
 };
