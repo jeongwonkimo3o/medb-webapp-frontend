@@ -4,6 +4,8 @@ import { API } from '../utils/constants/BaseApi';
 export async function fetchDrugs(page: number = 1, searchTerm: string = ''): Promise<DrugsResponse> {
   const url = searchTerm ? `/drugs?search=${encodeURIComponent(searchTerm)}&page=${page}` : `/drugs?page=${page}`;
   const response = await API.get(url);
+  console.log('GET request URL:', `${API}${url}`);
+
   return response.data;
 }
 

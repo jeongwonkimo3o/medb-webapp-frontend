@@ -8,14 +8,19 @@ import Loading from "../../components/Loading/Loading";
 import FloatingMenu from "../../components/FloatingMenu";
 import formatDate from "../../services/formatData";
 import ReviewForm from "../../components/ReviewForm";
+import ReviewModal from "../../components/ReviewModal";
+import { useRecoilState } from "recoil";
+import { isReviewModalOpenState } from "../../atoms/reviewState";
 
 const DetailPage = (): JSX.Element => {
   const [drugInfo, setDrugInfo] = useState<DrugInfo | null>(null);
   const [isLoading, setIsLoading] = useState(true); // 로딩 상태 추가
   const [isReviewFormVisible, setIsReviewFormVisible] = useState(false); // 리뷰 폼 표시 여부 상태 추가
+  const [isReviewModalOpen, setIsReviewModalOpen] = useRecoilState(isReviewModalOpenState);
   const params = useParams();
   const itemSeq = params.item_seq;
   const token = localStorage.getItem("authToken");
+  localStorage.setItem("itemSeq", itemSeq as string);
 
   useEffect(() => {
     const fetchData = async () => {
@@ -24,6 +29,7 @@ const DetailPage = (): JSX.Element => {
         const fetchedDrugInfo = await fetchDrugInfo(itemSeq);
         setDrugInfo(fetchedDrugInfo);
       }
+
       setIsLoading(false); // 데이터 로딩 완료
     };
 
@@ -69,9 +75,14 @@ const DetailPage = (): JSX.Element => {
         </p>
       </div>
       {token != null && (
-        <FloatingMenu onOpenReviewForm={handleOpenReviewForm} />
+        <FloatingMenu
+          onOpenReviewForm={handleOpenReviewForm}
+          onToggleReviewModal={() => setIsReviewModalOpen(!isReviewModalOpen)} // 추가된 props
+        />
       )}
-
+      {isReviewModalOpen && (
+        <ReviewModal onClose={() => setIsReviewModalOpen(false)} />
+      )}{" "}
       {isReviewFormVisible && (
         <div className="fixed inset-0 flex justify-center items-center bg-gray-900 bg-opacity-50">
           <div className="bg-white p-8 rounded-lg shadow-md">
@@ -95,10 +106,13 @@ const DetailPage = (): JSX.Element => {
               </svg>
             </button>
             <ReviewForm onClose={handleCloseReviewForm} />
-
           </div>
         </div>
       )}
+      {isReviewModalOpen && (
+        
+    <ReviewModal onClose={() => setIsReviewModalOpen(false)} />
+  )}
     </div>
   );
 };
