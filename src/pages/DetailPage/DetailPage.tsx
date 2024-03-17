@@ -5,14 +5,17 @@ import { fetchDrugInfo } from "../../api/detail";
 import nullImage from "../../assets/image_null.png";
 import { useParams } from "react-router-dom";
 import Loading from "../../components/Loading/Loading";
-import formatDate from "../../services/FormatData";
-import FloatingMenu from "../../components/FloatingMenu"; // 추가
+import FloatingMenu from "../../components/FloatingMenu";
+import formatDate from "../../services/formatData";
+import ReviewForm from "../../components/ReviewForm";
 
 const DetailPage = (): JSX.Element => {
   const [drugInfo, setDrugInfo] = useState<DrugInfo | null>(null);
   const [isLoading, setIsLoading] = useState(true); // 로딩 상태 추가
+  const [isReviewFormVisible, setIsReviewFormVisible] = useState(false); // 리뷰 폼 표시 여부 상태 추가
   const params = useParams();
   const itemSeq = params.item_seq;
+  const token = localStorage.getItem("authToken");
 
   useEffect(() => {
     const fetchData = async () => {
@@ -26,6 +29,14 @@ const DetailPage = (): JSX.Element => {
 
     fetchData();
   }, [itemSeq]);
+
+  const handleOpenReviewForm = () => {
+    setIsReviewFormVisible(true);
+  };
+
+  const handleCloseReviewForm = () => {
+    setIsReviewFormVisible(false);
+  };
 
   if (isLoading) {
     return <Loading />;
@@ -57,8 +68,37 @@ const DetailPage = (): JSX.Element => {
             : "알 수 없음"}
         </p>
       </div>
-      
-      <FloatingMenu /> {/* 추가 */}
+      {token != null && (
+        <FloatingMenu onOpenReviewForm={handleOpenReviewForm} />
+      )}
+
+      {isReviewFormVisible && (
+        <div className="fixed inset-0 flex justify-center items-center bg-gray-900 bg-opacity-50">
+          <div className="bg-white p-8 rounded-lg shadow-md">
+            <button
+              className="absolute top-2 right-2 text-gray-600 hover:text-gray-800"
+              onClick={handleCloseReviewForm}
+            >
+              <svg
+                xmlns="http://www.w3.org/2000/svg"
+                className="h-6 w-6"
+                fill="none"
+                viewBox="0 0 24 24"
+                stroke="currentColor"
+              >
+                <path
+                  strokeLinecap="round"
+                  strokeLinejoin="round"
+                  strokeWidth={2}
+                  d="M6 18L18 6M6 6l12 12"
+                />
+              </svg>
+            </button>
+            <ReviewForm onClose={handleCloseReviewForm} />
+
+          </div>
+        </div>
+      )}
     </div>
   );
 };
