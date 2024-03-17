@@ -10,6 +10,7 @@ export const loginUser = async (
     localStorage.setItem("authToken", response.data.access_token);
     localStorage.setItem("nickname", response.data.user.nickname);
     localStorage.setItem("id", response.data.user.id);
+    localStorage.setItem("email", response.data.user.email);
     return { success: true, message: "로그인 성공!" }; // 항상 성공 메시지를 문자열로 반환
   } catch (error: any) {
     const message = error.response?.data?.message || "알 수 없는 오류가 발생했습니다.";
