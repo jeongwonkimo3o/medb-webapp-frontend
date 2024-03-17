@@ -1,12 +1,20 @@
+import { Link } from "react-router-dom";
 import SideMenu from "../../components/SideMenu";
 
 const MyPage = (): JSX.Element => {
+
+  // 로컬스토리지에서 닉네임을 가져옴
+  const nickname = localStorage.getItem("nickname");
+  const totalDrugs = localStorage.getItem("total_drugs");
+  const oldLogs = localStorage.getItem("old_logs");
+  const id = localStorage.getItem("id");
+
   return (
     <div className="flex bg-blue-50">
       <SideMenu />
       <div className="flex-1 flex flex-col mt-8 mx-8">
         <div className="p-4 text-lg">
-          <span className="font-semibold text-blue-800">닉네임</span>님의
+          <span className="font-semibold text-blue-800">{nickname}</span>님의
           마이페이지입니다.
         </div>
         <div className="rounded-2xl border border-gray-200 bg-white shadow-sm p-8 w-full mt-4">
@@ -18,21 +26,18 @@ const MyPage = (): JSX.Element => {
         {/* 수평 컨테이너 시작 */}
         <div className="flex mt-4">
           <div className="flex-1 mx-1 rounded-xl border border-gray-200 bg-white shadow-sm p-4">
-            <p className="text-sm">현재 복용 중인 약</p>
-            <p className="text-xl font-semibold text-blue-600">7</p>
+            <Link to={`/mypage/${id}/medication`} className="text-sm hover:underline">현재 복용 중인 약</Link>
+            <p className="text-xl font-semibold text-blue-600">{totalDrugs}</p>
           </div>
           <div className="flex-1 mx-1 rounded-xl border border-gray-200 bg-white shadow-sm p-4">
             <p className="text-sm">과거에 복용한 약</p>
-            <p className="text-xl font-semibold text-blue-600">2</p>
+            <p className="text-xl font-semibold text-blue-600">{oldLogs}</p>
           </div>
           <div className="flex-1 mx-1 rounded-xl border border-gray-200 bg-white shadow-sm p-4">
             <p className="text-sm">작성한 리뷰</p>
             <p className="text-xl font-semibold text-blue-600">3</p>
           </div>
-          <div className="flex-1 mx-1 rounded-xl border border-gray-200 bg-white shadow-sm p-4">
-            <p className="text-sm">작성한 메모</p>
-            <p className="text-xl font-semibold text-blue-600">126</p>
-          </div>
+          
         </div>
         <div className="rounded-2xl border border-gray-200 bg-white shadow-sm p-8 w-full mt-4">
           <p className="mb-4">
@@ -61,7 +66,6 @@ const MyPage = (): JSX.Element => {
             />
           </div>
         </div>
-        {/* 수평 컨테이너 끝 */}
       </div>
     </div>
   );
