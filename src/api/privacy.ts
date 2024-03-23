@@ -2,7 +2,7 @@ import { API } from "../utils/constants/BaseApi";
 
 export const updateUserInfo = async (
   params: UpdateUserInfoParams
-): Promise<UpdateUserInfoResponse> => {
+): Promise<string> => { // 또는 UpdateUserInfoResponse에 맞는 타입으로 지정
   const token = localStorage.getItem("authToken");
 
   try {
@@ -13,6 +13,7 @@ export const updateUserInfo = async (
     });
     console.log("User info updated:", response.data.user.nickname);
     localStorage.setItem("nickname", response.data.user.nickname);
+    return response.data.user.nickname; // 혹은 UpdateUserInfoResponse에 맞는 값을 반환
   } catch (error: any) {
     throw new Error(
       error.response.data.message ||
@@ -20,6 +21,7 @@ export const updateUserInfo = async (
     );
   }
 };
+
 
 export const deleteUserAccount = async (userId: number): Promise<void> => {
   try {

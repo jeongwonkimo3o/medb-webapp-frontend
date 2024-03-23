@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+import { useEffect, useState } from "react";
 import DrugFAQ from "../../components/DrugFAQ";
 import { DrugInfo } from "../../types/Detail";
 import { fetchDrugInfo } from "../../api/detail";

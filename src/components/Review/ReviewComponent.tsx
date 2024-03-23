@@ -1,4 +1,4 @@
-import React, { useEffect, useState, useRef, useCallback } from "react";
+import { useEffect, useState, useRef, useCallback } from "react";
 import { Review, Image } from "../../types/Review";
 import Loading from "../Loading/Loading";
 import { deleteReview, getReviews } from "../../api/review";
@@ -89,7 +89,7 @@ const ReviewComponent = () => {
       {reviews.length === 0 ? (
         <p>리뷰가 없습니다! 작성해 보시는 건 어떠신가요?</p>
       ) : (
-        reviews.map((review, index) => (
+        reviews.map((review) => (
           <div key={review.id} className="mb-4 pb-4 border-b border-gray-200">
             <div className="flex justify-between items-center">
               <Link

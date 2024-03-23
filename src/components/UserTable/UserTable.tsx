@@ -1,5 +1,4 @@
-// UserTable.tsx
-import React, { useEffect, useState } from "react";
+import { useEffect, useState } from "react";
 import { getUserInfo } from "../../api/user";
 import { User } from "../../types/User";
 import { deleteUserAccount } from "../../api/privacy";

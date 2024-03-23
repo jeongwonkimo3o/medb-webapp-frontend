@@ -4,7 +4,6 @@ import { loginUser, registerUser } from "../../api/auth";
 import { useEffect, useState } from "react";
 import { authMsgState } from "../../atoms/authState";
 import { useRecoilState } from "recoil";
-import axios from "axios";
 import { AuthFormData, AuthFormProps } from "../../types/Auth";
 
 const AuthForm = ({ type }: AuthFormProps): JSX.Element => {
@@ -66,18 +65,6 @@ const AuthForm = ({ type }: AuthFormProps): JSX.Element => {
       setAuthMsg("알 수 없는 오류가 발생했습니다.");
     }
   };
-
-  // API 오류 처리를 위한 별도의 함수
-  function handleApiError(error: unknown) {
-    if (axios.isAxiosError(error)) {
-      const serverMessage =
-        error.response?.data.message || "알 수 없는 오류가 발생했습니다.";
-      setAuthMsg(serverMessage); // 사용자에게 오류 메시지 표시
-    } else {
-      console.error("An unexpected error occurred");
-      setAuthMsg("알 수 없는 오류가 발생했습니다.");
-    }
-  }
 
   // 폼 필드 정의
   const fields = [

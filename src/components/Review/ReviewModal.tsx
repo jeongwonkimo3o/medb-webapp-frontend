@@ -1,4 +1,4 @@
-import React, { useEffect, useState, useRef } from "react";
+import { useEffect, useState, useRef } from "react";
 import { showReviews } from "../../api/review";
 import { Review, Image } from "../../types/Review";
 import Loading from "../../components/Loading/Loading";

@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+import { useEffect, useState } from "react";
 import SideMenu from "../../components/SideMenu";
 import Loading from "../../components/Loading/Loading"; 
 import { LogWithDetails } from "../../types/MedicationLog";
