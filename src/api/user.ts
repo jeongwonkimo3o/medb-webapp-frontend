@@ -11,6 +11,7 @@ export const loginUser = async (
     localStorage.setItem("nickname", response.data.user.nickname);
     localStorage.setItem("id", response.data.user.id);
     localStorage.setItem("email", response.data.user.email);
+    localStorage.setItem("is_admin", response.data.user.is_admin);
     return { success: true, message: "로그인 성공!" }; // 항상 성공 메시지를 문자열로 반환
   } catch (error: any) {
     const message = error.response?.data?.message || "알 수 없는 오류가 발생했습니다.";
@@ -33,6 +34,37 @@ export const registerUser = async (registerData: RegisterData) => {
       message =
         error.response.data.message || "회원가입 중 문제가 발생했습니다.";
     }
+    return { success: false, message };
+  }
+};
+
+const getAuthToken = (): string | null => {
+  return localStorage.getItem("authToken");
+};
+
+// 로그아웃
+export const logoutUser = async () => {
+  try {
+    const authToken = getAuthToken();
+    if (!authToken) {
+      throw new Error("로그인 정보가 없습니다.");
+    }
+
+    await API.post("logout", null, {
+      headers: {
+        Authorization: `Bearer ${authToken}`,
+      },
+    });
+
+    // 스토리지에서 사용자 정보 삭제
+    localStorage.removeItem("authToken");
+    localStorage.removeItem("nickname");
+    localStorage.removeItem("id");
+    localStorage.removeItem("email");
+
+    return { success: true, message: "로그아웃 성공!" };
+  } catch (error: any) {
+    const message = error.response?.data?.message || "알 수 없는 오류가 발생했습니다.";
     return { success: false, message };
   }
 };

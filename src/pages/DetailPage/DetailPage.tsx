@@ -8,7 +8,7 @@ import Loading from "../../components/Loading/Loading";
 import FloatingMenu from "../../components/FloatingMenu";
 import formatDate from "../../services/formatData";
 import ReviewForm from "../../components/ReviewForm";
-import ReviewModal from "../../components/ReviewModal";
+import ReviewModal from "../../components/Review";
 import { useRecoilState } from "recoil";
 import { isReviewModalOpenState } from "../../atoms/reviewState";
 
