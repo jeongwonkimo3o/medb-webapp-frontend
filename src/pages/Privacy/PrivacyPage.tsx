@@ -31,7 +31,7 @@ const PrivacyPage = () => {
     // 이메일은 제외하고 나머지 폼 데이터만 서버로 전송합니다.
     try {
       const { currentPassword, newPassword, newNickname } = formState;
-      const response = await updateUserInfo({
+      await updateUserInfo({
         currentPassword,
         newPassword,
         newNickname,
@@ -50,7 +50,7 @@ const PrivacyPage = () => {
     const confirmation = window.confirm("정말로 회원 탈퇴하시겠습니까?");
     if (confirmation) {
       try {
-        await deleteUserAccount();
+        await deleteUserAccount(Number(localStorage.getItem("id")));
         alert("회원 탈퇴가 완료되었습니다.");
       } catch (error: unknown) {
         if (error instanceof Error) {

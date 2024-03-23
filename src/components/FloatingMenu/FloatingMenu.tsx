@@ -1,8 +1,6 @@
 import { FiPlus, FiEdit, FiEye } from "react-icons/fi";
 import { submitMedicationLog } from "../../api/medication_log";
 import axios from "axios";
-import { useSetRecoilState } from "recoil";
-import { isReviewModalOpenState } from "../../atoms/reviewState";
 
 const FloatingMenu = ({
   onOpenReviewForm,
@@ -11,11 +9,7 @@ const FloatingMenu = ({
   onOpenReviewForm: () => void;
   onToggleReviewModal: () => void; // 함수 타입 추가
 }) => {
-  const setIsReviewModalOpen = useSetRecoilState(isReviewModalOpenState);
 
-  const toggleReviewModal = () => {
-    setIsReviewModalOpen((prevState) => !prevState);
-  };
 
   const handleAddToList = async () => {
     try {
