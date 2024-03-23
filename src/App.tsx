@@ -11,6 +11,11 @@ import MedicationPage from "./pages/Mypage/MedicationPage";
 import MyReviewPage from "./pages/Mypage/MyReviewPage";
 import OldMedicationPage from "./pages/Mypage/OldMedicationPage";
 import PrivacyPage from "./pages/Privacy/PrivacyPage";
+import NoticePage from "./pages/NoticePage";
+import WriteNoticePage from "./pages/NoticePage/WriteNoticePage";
+import UserManagementPage from "./pages/UserManagementPage";
+import ViewNoticePage from "./pages/NoticePage/ViewNoticePage";
+import EditNoticePage from "./pages/NoticePage/EditNoticePage";
 
 function App(): JSX.Element {
   return (
@@ -29,6 +34,17 @@ function App(): JSX.Element {
         <Route path="myreview" element={<MyReviewPage />} />
         <Route path="oldmedication" element={<OldMedicationPage />} />
         <Route path="privacy" element={<PrivacyPage />} />
+      </Route>
+
+      <Route path="notice/*" element={<MyPageLayout />}>
+        <Route index element={<NoticePage />} />
+        <Route path="write" element={<WriteNoticePage />} />
+        <Route path="edit/:notice_id" element={<EditNoticePage />} />
+        <Route path="detail/:notice_id" element={<ViewNoticePage />} />
+      </Route>
+
+      <Route path="admin/*" element={<MyPageLayout />}>
+        <Route path="user-management" element={<UserManagementPage />} />
       </Route>
     </Routes>
   );
