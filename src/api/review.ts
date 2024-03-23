@@ -1,4 +1,4 @@
-import { ImageUploadResponse, ReviewFormData } from "../types/review";
+import { ImageUploadResponse, ReviewFormData } from "../types/Review";
 import { API } from "../utils/constants/BaseApi";
 
 const getAuthToken = (): string | null => {
@@ -60,21 +60,63 @@ export const submitReview = async (data: ReviewFormData): Promise<void> => {
   }
 };
 
-export const getReviews = async (page: number) => {
+export const showReviews = async (page: number) => {
   try {
     const token = getAuthToken();
-    const response = await API.get(`reviews?item_seq=${itemSeq}`, {
+    const response = await API.get(`reviews/${itemSeq}`, {
       headers: {
-        Authorization: `Bearer ${token}`
+        "Content-Type": "application/json",
+        Authorization: `Bearer ${token}`,
       },
       params: {
         page: page,
-      }
+      },
     });
-    console.log('데이터: ', response.data);
+    console.log("데이터: ", response.data);
     return response.data;
   } catch (error) {
+    throw new Error("API 호출 중 오류 발생: " + error);
+  }
+};
 
-    throw new Error('API 호출 중 오류 발생: ' + error);
+// 내 리뷰 불러오기
+export const getReviews = async (page: number) => {
+  try {
+    const token = getAuthToken();
+    const response = await API.get("reviews", {
+      headers: {
+        "Content-Type": "application/json",
+        Authorization: `Bearer ${token}`,
+      },
+      params: {
+        page: page,
+      },
+    });
+    let reviews_total = response.data.reviews.total; // 수정된 부분
+    localStorage.setItem("reviews_total", reviews_total);
+    return response.data;
+  } catch (error) {
+    console.error(error);
+    throw new Error("리뷰 불러오기 실패");
+  }
+};
+
+// 리뷰 삭제
+export const deleteReview = async (reviewId: number) => {
+  const authToken = getAuthToken();
+  if (!authToken) {
+    throw new Error("토큰이 없습니다.");
+  }
+
+  try {
+    await API.delete(`reviews/${reviewId}`, {
+      headers: {
+        Authorization: `Bearer ${authToken}`,
+      },
+    });
+    console.log("리뷰가 삭제되었습니다.");
+  } catch (error) {
+    console.error("리뷰 삭제 중 오류 발생:", error);
+    throw new Error("리뷰 삭제 실패");
   }
 };
