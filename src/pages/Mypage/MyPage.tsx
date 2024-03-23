@@ -8,6 +8,7 @@ const MyPage = (): JSX.Element => {
   const totalDrugs = localStorage.getItem("total_drugs");
   const oldLogs = localStorage.getItem("old_logs");
   const id = localStorage.getItem("id");
+  const reviews_total = localStorage.getItem("reviews_total");
 
   return (
     <div className="flex bg-blue-50">
@@ -35,7 +36,7 @@ const MyPage = (): JSX.Element => {
           </div>
           <div className="flex-1 mx-1 rounded-xl border border-gray-200 bg-white shadow-sm p-4">
             <p className="text-sm">작성한 리뷰</p>
-            <p className="text-xl font-semibold text-blue-600">3</p>
+            <p className="text-xl font-semibold text-blue-600">{reviews_total}</p>
           </div>
           
         </div>
@@ -53,19 +54,7 @@ const MyPage = (): JSX.Element => {
             </p>
           </div>
         </div>
-        <div className="rounded-2xl border border-gray-200 bg-white shadow-sm p-6 w-full mt-4">
-          <p className="mb-2 text-sm">
-            <span className="font-medium text-blue-800">약쟁이</span>님이
-            달마다 먹은 약의 개수가 궁금하실까봐 그래프로 준비해 봤어요! 🧐
-          </p>
-          <div className="flex justify-center">
-            <img
-              src="https://via.placeholder.com/600x120"
-              alt="그래프"
-              className="w-full"
-            />
-          </div>
-        </div>
+        
       </div>
     </div>
   );
