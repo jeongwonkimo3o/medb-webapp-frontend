@@ -1,6 +1,6 @@
 import Field from "./Field";
 import { Link, useNavigate } from "react-router-dom";
-import { loginUser, registerUser } from "../../api/user";
+import { loginUser, registerUser } from "../../api/auth";
 import { useEffect, useState } from "react";
 import { authMsgState } from "../../atoms/authState";
 import { useRecoilState } from "recoil";

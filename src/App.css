@@ -4,3 +4,7 @@ body {
   font-family: 'pretendard';
   font-weight: 300
 }
+
+.custom-quill-editor .ql-editor {
+  min-height: 500px;
+}

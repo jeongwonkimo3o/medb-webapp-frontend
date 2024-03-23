@@ -1,6 +1,6 @@
 import { Link, useLocation } from "react-router-dom";
 import medb_logo from "../../assets/medb_logo.png"; // 이미지 경로는 실제 이미지 경로로 변경해야 합니다.
-import { logoutUser } from "../../api/user";
+import { logoutUser } from "../../api/auth";
 
 const SideMenu = () => {
   const location = useLocation();
@@ -99,6 +99,16 @@ const SideMenu = () => {
           작성한 리뷰
         </Link>
       </li>
+      <Link
+        to={`/notice`}
+        className={`block rounded-lg px-4 py-2 text-sm font-medium ${
+          location.pathname === `/admin/notice`
+            ? "bg-gray-100 text-gray-700"
+            : "text-gray-500 hover:bg-gray-100 hover:text-gray-700"
+        }`}
+      >
+        공지사항
+      </Link>
 
       <li>
         <Link
@@ -120,9 +130,9 @@ const SideMenu = () => {
     <ul className="mt-6 space-y-1">
       <li>
         <Link
-          to={`/mypage/${id}/myreview`}
+          to={`/notice`}
           className={`block rounded-lg px-4 py-2 text-sm font-medium ${
-            location.pathname === `/mypage/${id}/myreview`
+            location.pathname === `/admin/notice`
               ? "bg-gray-100 text-gray-700"
               : "text-gray-500 hover:bg-gray-100 hover:text-gray-700"
           }`}
@@ -132,9 +142,9 @@ const SideMenu = () => {
       </li>
       <li>
         <Link
-          to={`/mypage/${id}/myreview`}
+          to={`/admin/user-management`}
           className={`block rounded-lg px-4 py-2 text-sm font-medium ${
-            location.pathname === `/mypage/${id}/myreview`
+            location.pathname === `/admin/user-management`
               ? "bg-gray-100 text-gray-700"
               : "text-gray-500 hover:bg-gray-100 hover:text-gray-700"
           }`}
@@ -142,27 +152,17 @@ const SideMenu = () => {
           유저관리
         </Link>
       </li>
-      <li>
-        <Link
-          to={`/mypage/${id}/myreview`}
-          className={`block rounded-lg px-4 py-2 text-sm font-medium ${
-            location.pathname === `/mypage/${id}/myreview`
-              ? "bg-gray-100 text-gray-700"
-              : "text-gray-500 hover:bg-gray-100 hover:text-gray-700"
-          }`}
-        >
-          의약품 업데이트
-        </Link>
-      </li>
+  
     </ul>
   );
 
   return (
     <div className="flex flex-col justify-between border-e bg-white w-64 min-h-screen">
       <div className="px-4 py-6">
+        <Link to="/" >
         <img src={medb_logo} alt="로고" className="w-16 mb-10" />
+        </Link>
         {isAdmin ? adminMenu : userMenu}
-
       </div>
       <div className="sticky inset-x-0 bottom-0 border-t border-gray-100">
         <button
