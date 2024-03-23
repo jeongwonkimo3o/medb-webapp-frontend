@@ -6,6 +6,9 @@ const Header = (): JSX.Element => {
   const nickname = localStorage.getItem("nickname");
   const id = localStorage.getItem("id");
 
+  // 닉네임이 존재하지 않을 때 기본값 설정
+  const displayName = nickname ? `${nickname}님` : "로그인";
+
   return (
     <>
       <header className="bg-white">
@@ -18,29 +21,17 @@ const Header = (): JSX.Element => {
               </Link>
             </div>
             
-            {token == null ? (
-              <div className="flex items-center gap-4">
-                <div className="sm:flex sm:gap-4">
-                  <Link
-                    className="px-5 py-2.5 text-sm font-medium text-blue-800 hover:text-blue-400"
-                    to="/login"
-                  >
-                    로그인
-                  </Link>
-                </div>
+            <div className="flex items-center gap-4">
+              <div className="sm:flex sm:gap-4">
+                {/* 링크의 텍스트를 displayName으로 설정 */}
+                <Link
+                  className="px-5 py-2.5 text-sm font-medium text-blue-800 hover:text-blue-400"
+                  to={token ? `/mypage/${id}` : "/login"}
+                >
+                  {displayName}
+                </Link>
               </div>
-            ) : (
-              <div className="flex items-center gap-4">
-                <div className="sm:flex sm:gap-4">
-                  <Link
-                    className="px-5 py-2.5 text-sm font-medium text-blue-800 hover:text-blue-400"
-                    to={`/mypage/${id}`}
-                  >
-                    {`${nickname}님`}
-                  </Link>
-                </div>
-              </div>
-            )}
+            </div>
           </div>
         </div>
       </header>
