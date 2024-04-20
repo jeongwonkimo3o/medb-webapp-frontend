@@ -1,9 +1,12 @@
 import { API } from "../utils/constants/BaseApi";
+import { getAuthToken } from "../utils/constants/getAuthToken";
+
+const token = getAuthToken();
 
 export const updateUserInfo = async (
   params: UpdateUserInfoParams
 ): Promise<string> => { // 또는 UpdateUserInfoResponse에 맞는 타입으로 지정
-  const token = localStorage.getItem("authToken");
+
 
   try {
     const response = await API.patch("/users", params, {
@@ -11,24 +14,22 @@ export const updateUserInfo = async (
         Authorization: `Bearer ${token}`,
       },
     });
-    console.log("User info updated:", response.data.user.nickname);
+    console.log("유저 정보 업데이트:", response.data.user.nickname);
     localStorage.setItem("nickname", response.data.user.nickname);
     return response.data.user.nickname; // 혹은 UpdateUserInfoResponse에 맞는 값을 반환
   } catch (error: any) {
     throw new Error(
       error.response.data.message ||
-        "An error occurred while updating user info."
+        "유저 정보 업데이트에 실패하였습니다."
     );
   }
 };
 
-
 export const deleteUserAccount = async (userId: number): Promise<void> => {
   try {
-    const token = localStorage.getItem("authToken");
     const isAdmin = localStorage.getItem("is_admin");
     if (!token) {
-      throw new Error("User not authenticated");
+      throw new Error("유저 정보가 유효하지 않습니다.");
     }
 
     await API.delete(`/users/${userId}`, {
@@ -39,15 +40,12 @@ export const deleteUserAccount = async (userId: number): Promise<void> => {
 
     // 스토리지에서 사용자 정보 삭제
     if (isAdmin === "false") {
-      localStorage.removeItem("authToken");
-      localStorage.removeItem("nickname");
-      localStorage.removeItem("id");
-      localStorage.removeItem("email");
+      localStorage.clear();
     }
   } catch (error: any) {
     throw new Error(
       error.response.data.message ||
-        "An error occurred while deleting user account."
+        "회원 탈퇴에 실패하였습니다."
     );
   }
 };

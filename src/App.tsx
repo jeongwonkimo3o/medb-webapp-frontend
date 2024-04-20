@@ -16,6 +16,7 @@ import WriteNoticePage from "./pages/NoticePage/WriteNoticePage";
 import UserManagementPage from "./pages/UserManagementPage";
 import ViewNoticePage from "./pages/NoticePage/ViewNoticePage";
 import EditNoticePage from "./pages/NoticePage/EditNoticePage";
+import DataManagementPage from "./pages/DataManagementPage";
 
 function App(): JSX.Element {
   return (
@@ -45,6 +46,7 @@ function App(): JSX.Element {
 
       <Route path="admin/*" element={<MyPageLayout />}>
         <Route path="user-management" element={<UserManagementPage />} />
+        <Route path="data-management" element={<DataManagementPage />} />
       </Route>
     </Routes>
   );

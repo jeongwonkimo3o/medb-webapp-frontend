@@ -1,9 +1,6 @@
 import { ImageUploadResponse, ReviewFormData } from "../types/Review";
 import { API } from "../utils/constants/BaseApi";
-
-const getAuthToken = (): string | null => {
-  return localStorage.getItem("authToken");
-};
+import { getAuthToken } from "../utils/constants/getAuthToken";
 
 const itemSeq = localStorage.getItem("itemSeq");
 

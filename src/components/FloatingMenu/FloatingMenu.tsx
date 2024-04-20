@@ -1,16 +1,14 @@
 import { FiPlus, FiEdit, FiEye } from "react-icons/fi";
-import { submitMedicationLog } from "../../api/medication_log";
+import { submitMedicationLog } from "../../api/medicationLog";
 import axios from "axios";
 
 const FloatingMenu = ({
   onOpenReviewForm,
-  onToggleReviewModal // onToggleReviewModal 함수 추가
+  onToggleReviewModal,
 }: {
   onOpenReviewForm: () => void;
-  onToggleReviewModal: () => void; // 함수 타입 추가
+  onToggleReviewModal: () => void;
 }) => {
-
-
   const handleAddToList = async () => {
     try {
       const itemSeq = localStorage.getItem("itemSeq");

@@ -2,7 +2,7 @@ import { useState, useEffect } from "react";
 import Loading from "../../components/Loading";
 import SideMenu from "../../components/SideMenu";
 import { LogWithDetails } from "../../types/MedicationLog";
-import { getOldMedicationLogs, reuseMedication } from "../../api/medication_log";
+import { getOldMedicationLogs, reuseMedication } from "../../api/medicationLog";
 import formatDate from "../../services/formatData";
 
 const OldMedicationPage = (): JSX.Element => {

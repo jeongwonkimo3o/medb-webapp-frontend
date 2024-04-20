@@ -1,17 +1,15 @@
 import { useEffect, useState } from "react";
 import { useLocation } from "react-router-dom";
-import { useRecoilValue, useSetRecoilState } from "recoil";
-import { searchTermState, totalResultsState } from "../../atoms/searchState";
+import {useSetRecoilState } from "recoil";
+import { searchTermState } from "../../atoms/searchState";
 import ContentTable from "../../components/ContentTable";
 import SearchForm from "../../components/Search/SearchForm";
 
 const SearchPage = (): JSX.Element => {
   const setSearchTerm = useSetRecoilState(searchTermState);
-  const totalResults = useRecoilValue(totalResultsState);
   const [showAlert, setShowAlert] = useState(false);
 
   const location = useLocation();
-  console.log(showAlert);
 
   useEffect(() => {
     const queryParams = new URLSearchParams(location.search);
@@ -33,7 +31,7 @@ const SearchPage = (): JSX.Element => {
         </h2>
         <SearchForm />
         <p className="mt-12 mb-20">
-          총 {totalResults}개의 검색 결과가 있습니다.
+          조회 결과는 다음과 같습니다.
         </p>
       </div>
       <ContentTable />

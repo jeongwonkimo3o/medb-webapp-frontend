@@ -24,7 +24,7 @@ const NoticeComponent = () => {
           setHasMore(false);
         }
       } catch (error) {
-        console.error("Failed to load notices:", error);
+        console.error("공지사항 호출 실패:", error);
       } finally {
         setLoading(false);
       }
