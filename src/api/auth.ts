@@ -57,10 +57,7 @@ export const logoutUser = async () => {
     });
 
     // 스토리지에서 사용자 정보 삭제
-    localStorage.removeItem("authToken");
-    localStorage.removeItem("nickname");
-    localStorage.removeItem("id");
-    localStorage.removeItem("email");
+    localStorage.clear();
 
     return { success: true, message: "로그아웃 성공!" };
   } catch (error: any) {

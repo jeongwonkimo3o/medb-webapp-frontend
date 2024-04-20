@@ -152,7 +152,18 @@ const SideMenu = () => {
           유저관리
         </Link>
       </li>
-  
+      <li>
+        <Link
+          to={`/admin/data-management`}
+          className={`block rounded-lg px-4 py-2 text-sm font-medium ${
+            location.pathname === `/admin/data-management`
+              ? "bg-gray-100 text-gray-700"
+              : "text-gray-500 hover:bg-gray-100 hover:text-gray-700"
+          }`}
+        >
+          데이터 관리
+        </Link>
+      </li>
     </ul>
   );
 

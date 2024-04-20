@@ -1,14 +1,13 @@
 import { useEffect, useState } from "react";
-import { useRecoilValue, useSetRecoilState } from "recoil";
+import { useRecoilValue } from "recoil";
 import { fetchDrugs } from "../../api/search";
 import Pagination from "./Pagination";
-import { searchTermState, totalResultsState } from "../../atoms/searchState";
+import { searchTermState } from "../../atoms/searchState";
 import { Drug } from "../../types/Drug"; 
 import { Link } from "react-router-dom";
 
 const ContentTable = () => {
   const searchTerm = useRecoilValue(searchTermState);
-  const setTotalResults = useSetRecoilState(totalResultsState);
   const [drugs, setDrugs] = useState<Drug[]>([]);
   const [currentPage, setCurrentPage] = useState(1);
   const [totalPages, setTotalPages] = useState(0);
@@ -19,7 +18,6 @@ const ContentTable = () => {
       setDrugs(response.drugs.data);
       setCurrentPage(response.drugs.current_page);
       setTotalPages(response.drugs.last_page);
-      setTotalResults(response.drugs.total_page);
     };
 
     if (searchTerm) {

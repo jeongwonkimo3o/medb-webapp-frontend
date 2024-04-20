@@ -4,7 +4,6 @@ import { API } from '../utils/constants/BaseApi';
 export async function fetchDrugs(page: number = 1, searchTerm: string = ''): Promise<DrugsResponse> {
   const url = searchTerm ? `/drugs?search=${encodeURIComponent(searchTerm)}&page=${page}` : `/drugs?page=${page}`;
   const response = await API.get(url);
-  console.log('GET request URL:', `${API}${url}`);
 
   return response.data;
 }
@@ -26,7 +25,7 @@ export async function fetchAllDrugs(): Promise<DrugsResponse[]> {
       }
     }
   } catch (error) {
-    console.error(`Error fetching drugs from page ${currentPage}:`, error);
+    console.error(`의약품 데이터 불러오기에 실패하였습니다. ${currentPage}:`, error);
   }
 
   return allDrugs;

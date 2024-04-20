@@ -1,8 +1,5 @@
 import { API } from "../utils/constants/BaseApi";
-
-const getAuthToken = (): string | null => {
-  return localStorage.getItem("authToken");
-};
+import { getAuthToken } from "../utils/constants/getAuthToken";
 
 // 공지 불러오기
 export const getNotices = async (page: number) => {
