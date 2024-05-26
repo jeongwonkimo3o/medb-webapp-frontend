@@ -39,6 +39,8 @@
    <div>
    <img src="https://img.shields.io/badge/Amazon CloudFront-8c4fff?style=for-the-badge&logo=Amazonaws&logoColor=white">
    <img src="https://img.shields.io/badge/Amazon S3-569A31?style=for-the-badge&logo=amazons3&logoColor=white">
+   <img src="https://img.shields.io/badge/Amazon route 53-8C4FFF?style=for-the-badge&logo=amazonroute53&logoColor=white">
+
 
 5. `その他`
    <div>
